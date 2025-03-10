@@ -1,0 +1,41 @@
+services:
+  node:
+    build:
+      context: ./.docker/node
+      dockerfile: DockerFile
+    volumes:
+      - ./node:/app
+      - node_home:/root
+    ports:
+      - "3000:3000"
+    command: ./run.sh
+    depends_on:
+      - rails
+
+  rails:
+    build:
+      context: ./.docker/rails
+      dockerfile: DockerFile
+    volumes:
+      - ./rails:/app
+      - rails_home:/root
+    command: ./run.sh
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: development
+      DB_PASSWORD: ${DB_PASSWORD}
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: app_development
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+  node_home:
+  rails_home:

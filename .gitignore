@@ -1,0 +1,24 @@
+node_modules
+/rails/vendor
+.env
+
+# Ignore all log files and tempfiles.
+/rails/log/*
+/rails/tmp/*
+!/rails/log/.keep
+!/rails/tmp/.keep
+
+# Ignore pid files, but keep the directory.
+/rails/tmp/pids/*
+!/rails/tmp/pids/
+!/rails/tmp/pids/.keep
+
+# Ignore storage (uploaded files in development and any SQLite databases).
+/rails/storage/*
+!/rails/storage/.keep
+/rails/tmp/storage/*
+!/rails/tmp/storage/
+!/rails/tmp/storage/.keep
+
+# Ignore master key for decrypting credentials and more.
+/rails/config/master.key
